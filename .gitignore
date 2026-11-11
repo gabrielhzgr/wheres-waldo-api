@@ -1,3 +1,6 @@
 node_modules
-/generated/prisma
+generated/prisma
 .env
+.neon
+/src/generated/prisma
+script.js

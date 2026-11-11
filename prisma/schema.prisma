@@ -1,41 +1,38 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-  provider = "prisma-client-js"
-  output   = "../generated/prisma"
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
 }
 
-model Level {
-  id         Int         @id @default(autoincrement())
-  name       String
-  imageUrl   String      @unique
-  widthPx    Int
-  heightPx   Int
-  characters Character[]
-  records    Record[]
-}
-
 model Character {
   id       Int    @id @default(autoincrement())
-  imageUrl String @unique
-  level    Level  @relation(fields: [levelId], references: [id])
-  levelId  Int
   name     String
   startX   Int
   endX     Int
   startY   Int
   endY     Int
+  levelId  Int
+  imageUrl String @unique
+  Level    Level  @relation(fields: [levelId], references: [id])
+}
+
+model Level {
+  id        Int         @id @default(autoincrement())
+  name      String
+  imageUrl  String      @unique
+  widthPx   Int
+  heightPx  Int
+  Character Character[]
+  Record    Record[]
 }
 
 model Record {
   id          Int    @id @default(autoincrement())
-  level       Level  @relation(fields: [levelId], references: [id])
-  levelId     Int
   username    String @unique
   timeSeconds Int
+  levelId     Int
+  Level       Level  @relation(fields: [levelId], references: [id])
 }
