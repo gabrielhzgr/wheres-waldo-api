@@ -2,5 +2,5 @@ node_modules
 generated/prisma
 .env
 .neon
-/src/generated/prisma
+generated/prisma
 script.js
