@@ -3,4 +3,3 @@ generated/prisma
 .env
 .neon
 generated/prisma
-script.js
