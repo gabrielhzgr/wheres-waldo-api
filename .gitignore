@@ -1,5 +1,4 @@
 node_modules
-generated/prisma
 .env
 .neon
 generated/prisma
