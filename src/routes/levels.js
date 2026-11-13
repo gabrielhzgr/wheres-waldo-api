@@ -3,8 +3,14 @@ import { prisma } from "../lib/prisma.js";
 
 const router = express.Router();
 
-router.get("/", async (req, res, next) => {
-  const levels = await prisma.level.findMany();
+router.get("/", async (req, res) => {
+  const levels = await prisma.level.findMany({
+    include: {
+      positions: {
+        include: { character: { select: { name: true, imageUrl: true } } },
+      },
+    },
+  });
   res.json({ levels });
 });
 

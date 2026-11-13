@@ -11,8 +11,8 @@ model Level {
   id        Int        @id @default(autoincrement())
   name      String     @unique
   imageUrl  String     @unique
-  Positions Position[]
-  Record    Record[]
+  positions Position[]
+  records   Record[]
 }
 
 model Position {

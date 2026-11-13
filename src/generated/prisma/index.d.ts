@@ -1167,13 +1167,13 @@ export namespace Prisma {
    */
 
   export type LevelCountOutputType = {
-    Positions: number
-    Record: number
+    positions: number
+    records: number
   }
 
   export type LevelCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Positions?: boolean | LevelCountOutputTypeCountPositionsArgs
-    Record?: boolean | LevelCountOutputTypeCountRecordArgs
+    positions?: boolean | LevelCountOutputTypeCountPositionsArgs
+    records?: boolean | LevelCountOutputTypeCountRecordsArgs
   }
 
   // Custom InputTypes
@@ -1197,7 +1197,7 @@ export namespace Prisma {
   /**
    * LevelCountOutputType without action
    */
-  export type LevelCountOutputTypeCountRecordArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LevelCountOutputTypeCountRecordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: RecordWhereInput
   }
 
@@ -1419,8 +1419,8 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     imageUrl?: boolean
-    Positions?: boolean | Level$PositionsArgs<ExtArgs>
-    Record?: boolean | Level$RecordArgs<ExtArgs>
+    positions?: boolean | Level$positionsArgs<ExtArgs>
+    records?: boolean | Level$recordsArgs<ExtArgs>
     _count?: boolean | LevelCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["level"]>
 
@@ -1444,8 +1444,8 @@ export namespace Prisma {
 
   export type LevelOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "imageUrl", ExtArgs["result"]["level"]>
   export type LevelInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Positions?: boolean | Level$PositionsArgs<ExtArgs>
-    Record?: boolean | Level$RecordArgs<ExtArgs>
+    positions?: boolean | Level$positionsArgs<ExtArgs>
+    records?: boolean | Level$recordsArgs<ExtArgs>
     _count?: boolean | LevelCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type LevelIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1454,8 +1454,8 @@ export namespace Prisma {
   export type $LevelPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Level"
     objects: {
-      Positions: Prisma.$PositionPayload<ExtArgs>[]
-      Record: Prisma.$RecordPayload<ExtArgs>[]
+      positions: Prisma.$PositionPayload<ExtArgs>[]
+      records: Prisma.$RecordPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -1855,8 +1855,8 @@ export namespace Prisma {
    */
   export interface Prisma__LevelClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    Positions<T extends Level$PositionsArgs<ExtArgs> = {}>(args?: Subset<T, Level$PositionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PositionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Record<T extends Level$RecordArgs<ExtArgs> = {}>(args?: Subset<T, Level$RecordArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    positions<T extends Level$positionsArgs<ExtArgs> = {}>(args?: Subset<T, Level$positionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PositionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    records<T extends Level$recordsArgs<ExtArgs> = {}>(args?: Subset<T, Level$recordsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2282,9 +2282,9 @@ export namespace Prisma {
   }
 
   /**
-   * Level.Positions
+   * Level.positions
    */
-  export type Level$PositionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Level$positionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Position
      */
@@ -2306,9 +2306,9 @@ export namespace Prisma {
   }
 
   /**
-   * Level.Record
+   * Level.records
    */
-  export type Level$RecordArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Level$recordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Record
      */
@@ -5788,16 +5788,16 @@ export namespace Prisma {
     id?: IntFilter<"Level"> | number
     name?: StringFilter<"Level"> | string
     imageUrl?: StringFilter<"Level"> | string
-    Positions?: PositionListRelationFilter
-    Record?: RecordListRelationFilter
+    positions?: PositionListRelationFilter
+    records?: RecordListRelationFilter
   }
 
   export type LevelOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     imageUrl?: SortOrder
-    Positions?: PositionOrderByRelationAggregateInput
-    Record?: RecordOrderByRelationAggregateInput
+    positions?: PositionOrderByRelationAggregateInput
+    records?: RecordOrderByRelationAggregateInput
   }
 
   export type LevelWhereUniqueInput = Prisma.AtLeast<{
@@ -5807,8 +5807,8 @@ export namespace Prisma {
     AND?: LevelWhereInput | LevelWhereInput[]
     OR?: LevelWhereInput[]
     NOT?: LevelWhereInput | LevelWhereInput[]
-    Positions?: PositionListRelationFilter
-    Record?: RecordListRelationFilter
+    positions?: PositionListRelationFilter
+    records?: RecordListRelationFilter
   }, "id" | "name" | "imageUrl">
 
   export type LevelOrderByWithAggregationInput = {
@@ -5999,31 +5999,31 @@ export namespace Prisma {
   export type LevelCreateInput = {
     name: string
     imageUrl: string
-    Positions?: PositionCreateNestedManyWithoutLevelInput
-    Record?: RecordCreateNestedManyWithoutLevelInput
+    positions?: PositionCreateNestedManyWithoutLevelInput
+    records?: RecordCreateNestedManyWithoutLevelInput
   }
 
   export type LevelUncheckedCreateInput = {
     id?: number
     name: string
     imageUrl: string
-    Positions?: PositionUncheckedCreateNestedManyWithoutLevelInput
-    Record?: RecordUncheckedCreateNestedManyWithoutLevelInput
+    positions?: PositionUncheckedCreateNestedManyWithoutLevelInput
+    records?: RecordUncheckedCreateNestedManyWithoutLevelInput
   }
 
   export type LevelUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
-    Positions?: PositionUpdateManyWithoutLevelNestedInput
-    Record?: RecordUpdateManyWithoutLevelNestedInput
+    positions?: PositionUpdateManyWithoutLevelNestedInput
+    records?: RecordUpdateManyWithoutLevelNestedInput
   }
 
   export type LevelUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
-    Positions?: PositionUncheckedUpdateManyWithoutLevelNestedInput
-    Record?: RecordUncheckedUpdateManyWithoutLevelNestedInput
+    positions?: PositionUncheckedUpdateManyWithoutLevelNestedInput
+    records?: RecordUncheckedUpdateManyWithoutLevelNestedInput
   }
 
   export type LevelCreateManyInput = {
@@ -6150,7 +6150,7 @@ export namespace Prisma {
   export type RecordCreateInput = {
     username: string
     timeSeconds: number
-    level: LevelCreateNestedOneWithoutRecordInput
+    level: LevelCreateNestedOneWithoutRecordsInput
   }
 
   export type RecordUncheckedCreateInput = {
@@ -6163,7 +6163,7 @@ export namespace Prisma {
   export type RecordUpdateInput = {
     username?: StringFieldUpdateOperationsInput | string
     timeSeconds?: IntFieldUpdateOperationsInput | number
-    level?: LevelUpdateOneRequiredWithoutRecordNestedInput
+    level?: LevelUpdateOneRequiredWithoutRecordsNestedInput
   }
 
   export type RecordUncheckedUpdateInput = {
@@ -6583,18 +6583,18 @@ export namespace Prisma {
     deleteMany?: PositionScalarWhereInput | PositionScalarWhereInput[]
   }
 
-  export type LevelCreateNestedOneWithoutRecordInput = {
-    create?: XOR<LevelCreateWithoutRecordInput, LevelUncheckedCreateWithoutRecordInput>
-    connectOrCreate?: LevelCreateOrConnectWithoutRecordInput
+  export type LevelCreateNestedOneWithoutRecordsInput = {
+    create?: XOR<LevelCreateWithoutRecordsInput, LevelUncheckedCreateWithoutRecordsInput>
+    connectOrCreate?: LevelCreateOrConnectWithoutRecordsInput
     connect?: LevelWhereUniqueInput
   }
 
-  export type LevelUpdateOneRequiredWithoutRecordNestedInput = {
-    create?: XOR<LevelCreateWithoutRecordInput, LevelUncheckedCreateWithoutRecordInput>
-    connectOrCreate?: LevelCreateOrConnectWithoutRecordInput
-    upsert?: LevelUpsertWithoutRecordInput
+  export type LevelUpdateOneRequiredWithoutRecordsNestedInput = {
+    create?: XOR<LevelCreateWithoutRecordsInput, LevelUncheckedCreateWithoutRecordsInput>
+    connectOrCreate?: LevelCreateOrConnectWithoutRecordsInput
+    upsert?: LevelUpsertWithoutRecordsInput
     connect?: LevelWhereUniqueInput
-    update?: XOR<XOR<LevelUpdateToOneWithWhereWithoutRecordInput, LevelUpdateWithoutRecordInput>, LevelUncheckedUpdateWithoutRecordInput>
+    update?: XOR<XOR<LevelUpdateToOneWithWhereWithoutRecordsInput, LevelUpdateWithoutRecordsInput>, LevelUncheckedUpdateWithoutRecordsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -6770,14 +6770,14 @@ export namespace Prisma {
   export type LevelCreateWithoutPositionsInput = {
     name: string
     imageUrl: string
-    Record?: RecordCreateNestedManyWithoutLevelInput
+    records?: RecordCreateNestedManyWithoutLevelInput
   }
 
   export type LevelUncheckedCreateWithoutPositionsInput = {
     id?: number
     name: string
     imageUrl: string
-    Record?: RecordUncheckedCreateNestedManyWithoutLevelInput
+    records?: RecordUncheckedCreateNestedManyWithoutLevelInput
   }
 
   export type LevelCreateOrConnectWithoutPositionsInput = {
@@ -6815,14 +6815,14 @@ export namespace Prisma {
   export type LevelUpdateWithoutPositionsInput = {
     name?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
-    Record?: RecordUpdateManyWithoutLevelNestedInput
+    records?: RecordUpdateManyWithoutLevelNestedInput
   }
 
   export type LevelUncheckedUpdateWithoutPositionsInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
-    Record?: RecordUncheckedUpdateManyWithoutLevelNestedInput
+    records?: RecordUncheckedUpdateManyWithoutLevelNestedInput
   }
 
   export type CharacterUpsertWithoutPositionsInput = {
@@ -6889,46 +6889,46 @@ export namespace Prisma {
     data: XOR<PositionUpdateManyMutationInput, PositionUncheckedUpdateManyWithoutCharacterInput>
   }
 
-  export type LevelCreateWithoutRecordInput = {
+  export type LevelCreateWithoutRecordsInput = {
     name: string
     imageUrl: string
-    Positions?: PositionCreateNestedManyWithoutLevelInput
+    positions?: PositionCreateNestedManyWithoutLevelInput
   }
 
-  export type LevelUncheckedCreateWithoutRecordInput = {
+  export type LevelUncheckedCreateWithoutRecordsInput = {
     id?: number
     name: string
     imageUrl: string
-    Positions?: PositionUncheckedCreateNestedManyWithoutLevelInput
+    positions?: PositionUncheckedCreateNestedManyWithoutLevelInput
   }
 
-  export type LevelCreateOrConnectWithoutRecordInput = {
+  export type LevelCreateOrConnectWithoutRecordsInput = {
     where: LevelWhereUniqueInput
-    create: XOR<LevelCreateWithoutRecordInput, LevelUncheckedCreateWithoutRecordInput>
+    create: XOR<LevelCreateWithoutRecordsInput, LevelUncheckedCreateWithoutRecordsInput>
   }
 
-  export type LevelUpsertWithoutRecordInput = {
-    update: XOR<LevelUpdateWithoutRecordInput, LevelUncheckedUpdateWithoutRecordInput>
-    create: XOR<LevelCreateWithoutRecordInput, LevelUncheckedCreateWithoutRecordInput>
+  export type LevelUpsertWithoutRecordsInput = {
+    update: XOR<LevelUpdateWithoutRecordsInput, LevelUncheckedUpdateWithoutRecordsInput>
+    create: XOR<LevelCreateWithoutRecordsInput, LevelUncheckedCreateWithoutRecordsInput>
     where?: LevelWhereInput
   }
 
-  export type LevelUpdateToOneWithWhereWithoutRecordInput = {
+  export type LevelUpdateToOneWithWhereWithoutRecordsInput = {
     where?: LevelWhereInput
-    data: XOR<LevelUpdateWithoutRecordInput, LevelUncheckedUpdateWithoutRecordInput>
+    data: XOR<LevelUpdateWithoutRecordsInput, LevelUncheckedUpdateWithoutRecordsInput>
   }
 
-  export type LevelUpdateWithoutRecordInput = {
+  export type LevelUpdateWithoutRecordsInput = {
     name?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
-    Positions?: PositionUpdateManyWithoutLevelNestedInput
+    positions?: PositionUpdateManyWithoutLevelNestedInput
   }
 
-  export type LevelUncheckedUpdateWithoutRecordInput = {
+  export type LevelUncheckedUpdateWithoutRecordsInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
-    Positions?: PositionUncheckedUpdateManyWithoutLevelNestedInput
+    positions?: PositionUncheckedUpdateManyWithoutLevelNestedInput
   }
 
   export type PositionCreateManyLevelInput = {
