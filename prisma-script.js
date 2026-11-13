@@ -1,7 +1,14 @@
 import { prisma } from "./src/lib/prisma.js";
 
 async function main() {
-  const levels = await prisma.level.findMany();
+  const levels = await prisma.level.findMany({
+    include: {
+      positions: {
+        select: { character: { select: { name: true, imageUrl: true } } },
+      },
+    },
+    take: 1,
+  });
 
   console.log(JSON.stringify(levels));
 }

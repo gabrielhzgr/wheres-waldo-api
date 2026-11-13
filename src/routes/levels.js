@@ -7,7 +7,7 @@ router.get("/", async (req, res) => {
   const levels = await prisma.level.findMany({
     include: {
       positions: {
-        include: { character: { select: { name: true, imageUrl: true } } },
+        select: { character: { select: { name: true, imageUrl: true } } },
       },
     },
   });
