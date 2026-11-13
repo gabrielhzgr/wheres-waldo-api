@@ -7,32 +7,38 @@ datasource db {
   provider = "postgresql"
 }
 
-model Character {
-  id       Int    @id @default(autoincrement())
-  name     String
-  startX   Int
-  endX     Int
-  startY   Int
-  endY     Int
-  levelId  Int
-  imageUrl String @unique
-  Level    Level  @relation(fields: [levelId], references: [id])
+model Level {
+  id        Int        @id @default(autoincrement())
+  name      String     @unique
+  imageUrl  String     @unique
+  Positions Position[]
+  Record    Record[]
 }
 
-model Level {
-  id        Int         @id @default(autoincrement())
-  name      String
-  imageUrl  String      @unique
-  widthPx   Int
-  heightPx  Int
-  Character Character[]
-  Record    Record[]
+model Position {
+  level       Level     @relation(fields: [levelId], references: [id])
+  levelId     Int
+  character   Character @relation(fields: [characterId], references: [id])
+  characterId Int
+  startX      Int
+  endX        Int
+  startY      Int
+  endY        Int
+
+  @@id([levelId, characterId])
+}
+
+model Character {
+  id        Int        @id @default(autoincrement())
+  imageUrl  String     @unique
+  name      String     @unique
+  positions Position[]
 }
 
 model Record {
   id          Int    @id @default(autoincrement())
-  username    String @unique
+  username    String
   timeSeconds Int
+  level       Level  @relation(fields: [levelId], references: [id])
   levelId     Int
-  Level       Level  @relation(fields: [levelId], references: [id])
 }

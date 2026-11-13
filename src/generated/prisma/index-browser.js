@@ -120,23 +120,25 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.CharacterScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  startX: 'startX',
-  endX: 'endX',
-  startY: 'startY',
-  endY: 'endY',
-  levelId: 'levelId',
-  imageUrl: 'imageUrl'
-};
-
 exports.Prisma.LevelScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  imageUrl: 'imageUrl'
+};
+
+exports.Prisma.PositionScalarFieldEnum = {
+  levelId: 'levelId',
+  characterId: 'characterId',
+  startX: 'startX',
+  endX: 'endX',
+  startY: 'startY',
+  endY: 'endY'
+};
+
+exports.Prisma.CharacterScalarFieldEnum = {
+  id: 'id',
   imageUrl: 'imageUrl',
-  widthPx: 'widthPx',
-  heightPx: 'heightPx'
+  name: 'name'
 };
 
 exports.Prisma.RecordScalarFieldEnum = {
@@ -158,8 +160,9 @@ exports.Prisma.QueryMode = {
 
 
 exports.Prisma.ModelName = {
-  Character: 'Character',
   Level: 'Level',
+  Position: 'Position',
+  Character: 'Character',
   Record: 'Record'
 };
 
