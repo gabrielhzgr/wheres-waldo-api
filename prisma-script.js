@@ -7,7 +7,7 @@ async function main() {
         select: { character: { select: { name: true, imageUrl: true } } },
       },
     },
-    take: 1,
+    orderBy: { name: "waldo" },
   });
 
   console.log(JSON.stringify(levels));
