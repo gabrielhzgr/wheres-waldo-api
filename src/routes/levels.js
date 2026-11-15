@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
     include: {
       positions: {
         select: {
-          character: { select: { i: true, name: true, imageUrl: true } },
+          character: { select: { id: true, name: true, imageUrl: true } },
         },
       },
     },
