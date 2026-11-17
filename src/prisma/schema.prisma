@@ -36,7 +36,7 @@ model Character {
 }
 
 model Record {
-  id          Int    @id @default(autoincrement())
+  id          String @id @default(uuid())
   username    String
   timeSeconds Int
   level       Level  @relation(fields: [levelId], references: [id])

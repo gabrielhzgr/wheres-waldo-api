@@ -4,10 +4,11 @@ async function main() {
   const levels = await prisma.level.findMany({
     include: {
       positions: {
-        select: { character: { select: { name: true, imageUrl: true } } },
+        select: {
+          character: { select: { id: true, name: true, imageUrl: true } },
+        },
       },
     },
-    orderBy: { name: "waldo" },
   });
 
   console.log(JSON.stringify(levels));

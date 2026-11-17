@@ -4582,26 +4582,24 @@ export namespace Prisma {
   }
 
   export type RecordAvgAggregateOutputType = {
-    id: number | null
     timeSeconds: number | null
     levelId: number | null
   }
 
   export type RecordSumAggregateOutputType = {
-    id: number | null
     timeSeconds: number | null
     levelId: number | null
   }
 
   export type RecordMinAggregateOutputType = {
-    id: number | null
+    id: string | null
     username: string | null
     timeSeconds: number | null
     levelId: number | null
   }
 
   export type RecordMaxAggregateOutputType = {
-    id: number | null
+    id: string | null
     username: string | null
     timeSeconds: number | null
     levelId: number | null
@@ -4617,13 +4615,11 @@ export namespace Prisma {
 
 
   export type RecordAvgAggregateInputType = {
-    id?: true
     timeSeconds?: true
     levelId?: true
   }
 
   export type RecordSumAggregateInputType = {
-    id?: true
     timeSeconds?: true
     levelId?: true
   }
@@ -4737,7 +4733,7 @@ export namespace Prisma {
   }
 
   export type RecordGroupByOutputType = {
-    id: number
+    id: string
     username: string
     timeSeconds: number
     levelId: number
@@ -4810,7 +4806,7 @@ export namespace Prisma {
       level: Prisma.$LevelPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
+      id: string
       username: string
       timeSeconds: number
       levelId: number
@@ -5238,7 +5234,7 @@ export namespace Prisma {
    * Fields of the Record model
    */
   interface RecordFieldRefs {
-    readonly id: FieldRef<"Record", 'Int'>
+    readonly id: FieldRef<"Record", 'String'>
     readonly username: FieldRef<"Record", 'String'>
     readonly timeSeconds: FieldRef<"Record", 'Int'>
     readonly levelId: FieldRef<"Record", 'Int'>
@@ -5948,7 +5944,7 @@ export namespace Prisma {
     AND?: RecordWhereInput | RecordWhereInput[]
     OR?: RecordWhereInput[]
     NOT?: RecordWhereInput | RecordWhereInput[]
-    id?: IntFilter<"Record"> | number
+    id?: StringFilter<"Record"> | string
     username?: StringFilter<"Record"> | string
     timeSeconds?: IntFilter<"Record"> | number
     levelId?: IntFilter<"Record"> | number
@@ -5964,7 +5960,7 @@ export namespace Prisma {
   }
 
   export type RecordWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     AND?: RecordWhereInput | RecordWhereInput[]
     OR?: RecordWhereInput[]
     NOT?: RecordWhereInput | RecordWhereInput[]
@@ -5990,7 +5986,7 @@ export namespace Prisma {
     AND?: RecordScalarWhereWithAggregatesInput | RecordScalarWhereWithAggregatesInput[]
     OR?: RecordScalarWhereWithAggregatesInput[]
     NOT?: RecordScalarWhereWithAggregatesInput | RecordScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Record"> | number
+    id?: StringWithAggregatesFilter<"Record"> | string
     username?: StringWithAggregatesFilter<"Record"> | string
     timeSeconds?: IntWithAggregatesFilter<"Record"> | number
     levelId?: IntWithAggregatesFilter<"Record"> | number
@@ -6148,45 +6144,48 @@ export namespace Prisma {
   }
 
   export type RecordCreateInput = {
+    id?: string
     username: string
     timeSeconds: number
     level: LevelCreateNestedOneWithoutRecordsInput
   }
 
   export type RecordUncheckedCreateInput = {
-    id?: number
+    id?: string
     username: string
     timeSeconds: number
     levelId: number
   }
 
   export type RecordUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     timeSeconds?: IntFieldUpdateOperationsInput | number
     level?: LevelUpdateOneRequiredWithoutRecordsNestedInput
   }
 
   export type RecordUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     timeSeconds?: IntFieldUpdateOperationsInput | number
     levelId?: IntFieldUpdateOperationsInput | number
   }
 
   export type RecordCreateManyInput = {
-    id?: number
+    id?: string
     username: string
     timeSeconds: number
     levelId: number
   }
 
   export type RecordUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     timeSeconds?: IntFieldUpdateOperationsInput | number
   }
 
   export type RecordUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     timeSeconds?: IntFieldUpdateOperationsInput | number
     levelId?: IntFieldUpdateOperationsInput | number
@@ -6392,7 +6391,6 @@ export namespace Prisma {
   }
 
   export type RecordAvgOrderByAggregateInput = {
-    id?: SortOrder
     timeSeconds?: SortOrder
     levelId?: SortOrder
   }
@@ -6412,7 +6410,6 @@ export namespace Prisma {
   }
 
   export type RecordSumOrderByAggregateInput = {
-    id?: SortOrder
     timeSeconds?: SortOrder
     levelId?: SortOrder
   }
@@ -6693,12 +6690,13 @@ export namespace Prisma {
   }
 
   export type RecordCreateWithoutLevelInput = {
+    id?: string
     username: string
     timeSeconds: number
   }
 
   export type RecordUncheckedCreateWithoutLevelInput = {
-    id?: number
+    id?: string
     username: string
     timeSeconds: number
   }
@@ -6761,7 +6759,7 @@ export namespace Prisma {
     AND?: RecordScalarWhereInput | RecordScalarWhereInput[]
     OR?: RecordScalarWhereInput[]
     NOT?: RecordScalarWhereInput | RecordScalarWhereInput[]
-    id?: IntFilter<"Record"> | number
+    id?: StringFilter<"Record"> | string
     username?: StringFilter<"Record"> | string
     timeSeconds?: IntFilter<"Record"> | number
     levelId?: IntFilter<"Record"> | number
@@ -6940,7 +6938,7 @@ export namespace Prisma {
   }
 
   export type RecordCreateManyLevelInput = {
-    id?: number
+    id?: string
     username: string
     timeSeconds: number
   }
@@ -6970,18 +6968,19 @@ export namespace Prisma {
   }
 
   export type RecordUpdateWithoutLevelInput = {
+    id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     timeSeconds?: IntFieldUpdateOperationsInput | number
   }
 
   export type RecordUncheckedUpdateWithoutLevelInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     timeSeconds?: IntFieldUpdateOperationsInput | number
   }
 
   export type RecordUncheckedUpdateManyWithoutLevelInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     timeSeconds?: IntFieldUpdateOperationsInput | number
   }

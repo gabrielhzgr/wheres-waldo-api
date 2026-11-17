@@ -2,17 +2,22 @@ import "dotenv/config";
 import cors from "cors";
 import express from "express";
 import levels from "./routes/levels.js";
+import cookieParser from "cookie-parser";
+import errors from "./errors/index.js";
 
 const app = express();
 const port = process.env["PORT"];
 
 // App Middleware
 app.use(cors());
+app.use(cookieParser());
 
+// Routes
 app.use("/levels", levels);
 
 // === 404 ===
 app.use((req, res) => {
+  console.log("Not found URL: ", req.originalUrl);
   throw new errors.NotFoundError("Not found");
 });
 
