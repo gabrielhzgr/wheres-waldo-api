@@ -8,11 +8,24 @@ import errors from "./errors/index.js";
 const app = express();
 const port = process.env["PORT"];
 
-// App Middleware
-app.use(cors());
+// === App Middleware ===
+const whitelist = [
+  "http:localhost:5173",
+  "https://wheres-waldo-api-0g9p.onrender.com",
+];
+app.use(express.json());
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header("Access-Control-Request-Headers", "Content-Type");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+  next();
+});
 app.use(cookieParser());
 
-// Routes
+// === Routes ===
 app.use("/levels", levels);
 
 // === 404 ===

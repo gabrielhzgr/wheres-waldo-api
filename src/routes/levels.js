@@ -1,8 +1,10 @@
 import express from "express";
+import cors from "cors";
 import { prisma } from "../lib/prisma.js";
 import "dotenv/config";
 import crypto from "node:crypto";
 import errors from "../errors/index.js";
+
 const router = express.Router();
 
 router.get("/", async (req, res) => {
@@ -16,18 +18,6 @@ router.get("/", async (req, res) => {
     },
   });
   return res.json({ levels });
-});
-
-router.use((req, res, next) => {
-  if (process.env["ENV"] == "dev") {
-    res.header("Access-Control-Allow-Origin", "http://localhost:5173");
-  } else {
-    res.header(
-      "Access-Control-Allow-Origin",
-      "https://wheres-waldo-api-0g9p.onrender.com",
-    );
-  }
-  next();
 });
 
 router.get("/:levelId/new-game", async (req, res) => {
