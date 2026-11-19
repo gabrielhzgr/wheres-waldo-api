@@ -23,7 +23,7 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
   next();
 });
-app.use(cookieParser());
+app.use(cookieParser(process.env["SECRET"]));
 
 // === Routes ===
 app.use("/levels", levels);
