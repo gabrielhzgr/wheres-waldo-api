@@ -4,7 +4,8 @@ import { prisma } from "../lib/prisma.js";
 import "dotenv/config";
 import crypto from "node:crypto";
 import errors from "../errors/index.js";
-
+import getFrontDomain from "../lib/getFrontDomain.js";
+import { get } from "node:http";
 const router = express.Router();
 
 router.get("/", async (req, res) => {
@@ -29,10 +30,19 @@ router.get("/:levelId/new-game", async (req, res) => {
     res.cookie("recordId", crypto.randomUUID(), {
       httpOnly: true,
       signed: true,
+      domain: getFrontDomain(),
     });
-    res.cookie("startTime", Date.now(), { httpOnly: true, signed: true });
+    res.cookie("startTime", Date.now(), {
+      httpOnly: true,
+      signed: true,
+      domain: getFrontDomain(),
+    });
     res.clearCookie("endTime");
-    res.cookie("correct", "{}", { httpOnly: true, signed: true });
+    res.cookie("correct", "{}", {
+      httpOnly: true,
+      signed: true,
+      domain: getFrontDomain(),
+    });
     return res.json({ success: true });
   } else {
     throw new errors.NotFoundError("This level does not exist");
@@ -76,10 +86,15 @@ router.post("/:levelId/place-character", async (req, res) => {
         res.cookie("correct", JSON.stringify(correct), {
           httpOnly: true,
           signed: true,
+          domain: getFrontDomain(),
         });
         if (Object.keys(correct).length == positions.length) {
           const endTime = Date.now();
-          res.cookie("endTime", endTime, { httpOnly: true, signed: true });
+          res.cookie("endTime", endTime, {
+            httpOnly: true,
+            signed: true,
+            domain: getFrontDomain(),
+          });
           const seconds =
             (endTime - Number(req.signedCookies["startTime"])) / 1000;
           const records = await prisma.record.findMany({

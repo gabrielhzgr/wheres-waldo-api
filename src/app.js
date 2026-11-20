@@ -4,6 +4,7 @@ import express from "express";
 import levels from "./routes/levels.js";
 import cookieParser from "cookie-parser";
 import errors from "./errors/index.js";
+import getFrontDomain from "./lib/getFrontDomain.js";
 
 const app = express();
 const port = process.env["PORT"];
@@ -16,15 +17,7 @@ const whitelist = [
 app.use(express.json());
 
 app.use((req, res, next) => {
-  if (process.env["ENV"] == "prod") {
-    res.header(
-      "Access-Control-Allow-Origin",
-      "https://whereis-waldo.netlify.app",
-    );
-  } else {
-    res.header("Access-Control-Allow-Origin", "http://localhost:5173");
-  }
-
+  res.header("Access-Control-Allow-Origin", getFrontDomain());
   res.header("Access-Control-Allow-Credentials", "true");
   res.header("Access-Control-Request-Headers", "Content-Type");
   res.header("Access-Control-Allow-Headers", "Content-Type");
