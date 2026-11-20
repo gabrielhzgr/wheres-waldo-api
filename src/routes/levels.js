@@ -35,12 +35,14 @@ router.get("/:levelId/new-game", async (req, res) => {
       signed: true,
       domain: frontDomain,
       sameSite: "none",
+      secure: true,
     });
     res.cookie("startTime", Date.now(), {
       httpOnly: true,
       signed: true,
       domain: frontDomain,
       sameSite: "none",
+      secure: true,
     });
     res.clearCookie("endTime");
     res.cookie("correct", "{}", {
@@ -48,6 +50,7 @@ router.get("/:levelId/new-game", async (req, res) => {
       signed: true,
       domain: frontDomain,
       sameSite: "none",
+      secure: true,
     });
     return res.json({ success: true });
   } else {
@@ -97,6 +100,7 @@ router.post("/:levelId/place-character", async (req, res) => {
           signed: true,
           domain: frontDomain,
           sameSite: "none",
+          secure: true,
         });
         if (Object.keys(correct).length == positions.length) {
           const endTime = Date.now();
@@ -105,6 +109,7 @@ router.post("/:levelId/place-character", async (req, res) => {
             signed: true,
             domain: frontDomain,
             sameSite: "none",
+            secure: true,
           });
           const seconds =
             (endTime - Number(req.signedCookies["startTime"])) / 1000;
