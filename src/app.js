@@ -17,7 +17,15 @@ const whitelist = [
 app.use(express.json());
 
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", getFrontDomain());
+  if (process.env["ENV"] == "prod") {
+    res.header(
+      "Access-Control-Allow-Origin",
+      "https://whereis-waldo.netlify.app",
+    );
+  } else {
+    res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+  }
+
   res.header("Access-Control-Allow-Credentials", "true");
   res.header("Access-Control-Request-Headers", "Content-Type");
   res.header("Access-Control-Allow-Headers", "Content-Type");
