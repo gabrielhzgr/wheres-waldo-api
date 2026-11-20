@@ -4,7 +4,6 @@ import { prisma } from "../lib/prisma.js";
 import "dotenv/config";
 import crypto from "node:crypto";
 import errors from "../errors/index.js";
-import getFrontDomain from "../lib/getFrontDomain.js";
 import { get } from "node:http";
 const router = express.Router();
 
@@ -22,7 +21,6 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:levelId/new-game", async (req, res) => {
-  const frontDomain = getFrontDomain();
   console.log(frontDomain, "front domain");
 
   const { levelId } = req.params;
@@ -56,9 +54,6 @@ router.get("/:levelId/new-game", async (req, res) => {
 });
 
 router.post("/:levelId/place-character", async (req, res) => {
-  const frontDomain = getFrontDomain();
-  console.log(frontDomain, "front domain");
-
   if (req.signedCookies["recordId"]) {
     let { levelId } = req.params;
     levelId = Number(levelId);
