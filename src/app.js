@@ -4,12 +4,15 @@ import express from "express";
 import levels from "./routes/levels.js";
 import cookieParser from "cookie-parser";
 import errors from "./errors/index.js";
-import getFrontDomain from "./lib/getFrontDomain.js";
+import morgan from "morgan";
 
 const app = express();
 const port = process.env["PORT"];
 
 // === App Middleware ===
+
+app.use(morgan("tiny"));
+
 const whitelist = [
   "http:localhost:5173",
   "https://wheres-waldo-api-0g9p.onrender.com",

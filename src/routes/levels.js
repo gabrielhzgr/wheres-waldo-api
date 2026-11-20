@@ -22,6 +22,9 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:levelId/new-game", async (req, res) => {
+  const frontDomain = getFrontDomain();
+  console.log(frontDomain, "front domain");
+
   const { levelId } = req.params;
   const level = await prisma.level.findFirst({
     where: { id: Number(levelId) },
@@ -30,18 +33,18 @@ router.get("/:levelId/new-game", async (req, res) => {
     res.cookie("recordId", crypto.randomUUID(), {
       httpOnly: true,
       signed: true,
-      domain: getFrontDomain(),
+      domain: frontDomain,
     });
     res.cookie("startTime", Date.now(), {
       httpOnly: true,
       signed: true,
-      domain: getFrontDomain(),
+      domain: frontDomain,
     });
     res.clearCookie("endTime");
     res.cookie("correct", "{}", {
       httpOnly: true,
       signed: true,
-      domain: getFrontDomain(),
+      domain: frontDomain,
     });
     return res.json({ success: true });
   } else {
@@ -50,6 +53,9 @@ router.get("/:levelId/new-game", async (req, res) => {
 });
 
 router.post("/:levelId/place-character", async (req, res) => {
+  const frontDomain = getFrontDomain();
+  console.log(frontDomain, "front domain");
+
   if (req.signedCookies["recordId"]) {
     let { levelId } = req.params;
     levelId = Number(levelId);
@@ -86,14 +92,14 @@ router.post("/:levelId/place-character", async (req, res) => {
         res.cookie("correct", JSON.stringify(correct), {
           httpOnly: true,
           signed: true,
-          domain: getFrontDomain(),
+          domain: frontDomain,
         });
         if (Object.keys(correct).length == positions.length) {
           const endTime = Date.now();
           res.cookie("endTime", endTime, {
             httpOnly: true,
             signed: true,
-            domain: getFrontDomain(),
+            domain: frontDomain,
           });
           const seconds =
             (endTime - Number(req.signedCookies["startTime"])) / 1000;
