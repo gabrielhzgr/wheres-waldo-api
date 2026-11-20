@@ -21,8 +21,6 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:levelId/new-game", async (req, res) => {
-  console.log(frontDomain, "front domain");
-
   const { levelId } = req.params;
   const level = await prisma.level.findFirst({
     where: { id: Number(levelId) },
