@@ -33,14 +33,12 @@ router.get("/:levelId/new-game", async (req, res) => {
     res.cookie("recordId", crypto.randomUUID(), {
       httpOnly: true,
       signed: true,
-      domain: frontDomain,
       sameSite: "none",
       secure: true,
     });
     res.cookie("startTime", Date.now(), {
       httpOnly: true,
       signed: true,
-      domain: frontDomain,
       sameSite: "none",
       secure: true,
     });
@@ -48,7 +46,6 @@ router.get("/:levelId/new-game", async (req, res) => {
     res.cookie("correct", "{}", {
       httpOnly: true,
       signed: true,
-      domain: frontDomain,
       sameSite: "none",
       secure: true,
     });
@@ -98,7 +95,6 @@ router.post("/:levelId/place-character", async (req, res) => {
         res.cookie("correct", JSON.stringify(correct), {
           httpOnly: true,
           signed: true,
-          domain: frontDomain,
           sameSite: "none",
           secure: true,
         });
@@ -107,7 +103,6 @@ router.post("/:levelId/place-character", async (req, res) => {
           res.cookie("endTime", endTime, {
             httpOnly: true,
             signed: true,
-            domain: frontDomain,
             sameSite: "none",
             secure: true,
           });
