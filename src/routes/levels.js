@@ -31,6 +31,7 @@ router.get("/:levelId/new-game", async (req, res) => {
       signed: true,
     });
     res.cookie("startTime", Date.now(), { httpOnly: true, signed: true });
+    res.clearCookie("endTime");
     res.cookie("correct", "{}", { httpOnly: true, signed: true });
     return res.json({ success: true });
   } else {
@@ -109,27 +110,33 @@ router.post("/:levelId/place-character", async (req, res) => {
 });
 
 router.post("/:levelId/new-record", async (req, res) => {
-  if (req.signedCookies["recordId"]) {
-    if (!req.signedCookies["startTime"]) {
-      throw new errors.NotAllowed("You must start a game first");
-    }
+  if (!req.signedCookies["startTime"]) {
+    throw new errors.NotAllowed("You must start a game first");
+  }
 
-    if (!req.signedCookies["endTime"]) {
-      throw new errors.NotAllowed("You have't ended the game yet");
-    }
-    const { recordId: id } = req.signedCookies["recordId"];
+  if (!req.signedCookies["endTime"]) {
+    throw new errors.NotAllowed("You have't ended the game yet");
+  }
+
+  if (req.signedCookies["recordId"] && req.signedCookies["endTime"]) {
+    let { levelId } = req.params;
+    levelId = Number(levelId);
+    const { recordId, startTime, endTime } = req.signedCookies;
     const { username } = req.body;
-    const { startTime } = req.signedCookies["startTime"];
-    const { endTime } = req.signedCookies["endTime"];
     const timeSeconds = (endTime - startTime) / 1000;
 
     await prisma.record.create({
-      data: { id, username, timeSeconds },
+      data: { id: recordId, username, timeSeconds, levelId },
     });
     const records = await prisma.record.findMany({
       where: { levelId },
       orderBy: { timeSeconds: "asc" },
     });
+    res.clearCookie("recordId");
+    res.clearCookie("startTime");
+    res.clearCookie("endTime");
+    res.clearCookie("correct");
+
     return res.json({ records });
   }
 });
