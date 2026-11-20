@@ -34,17 +34,20 @@ router.get("/:levelId/new-game", async (req, res) => {
       httpOnly: true,
       signed: true,
       domain: frontDomain,
+      sameSite: "none",
     });
     res.cookie("startTime", Date.now(), {
       httpOnly: true,
       signed: true,
       domain: frontDomain,
+      sameSite: "none",
     });
     res.clearCookie("endTime");
     res.cookie("correct", "{}", {
       httpOnly: true,
       signed: true,
       domain: frontDomain,
+      sameSite: "none",
     });
     return res.json({ success: true });
   } else {
@@ -93,6 +96,7 @@ router.post("/:levelId/place-character", async (req, res) => {
           httpOnly: true,
           signed: true,
           domain: frontDomain,
+          sameSite: "none",
         });
         if (Object.keys(correct).length == positions.length) {
           const endTime = Date.now();
@@ -100,6 +104,7 @@ router.post("/:levelId/place-character", async (req, res) => {
             httpOnly: true,
             signed: true,
             domain: frontDomain,
+            sameSite: "none",
           });
           const seconds =
             (endTime - Number(req.signedCookies["startTime"])) / 1000;

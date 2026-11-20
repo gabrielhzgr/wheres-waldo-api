@@ -11,12 +11,8 @@ const port = process.env["PORT"];
 
 // === App Middleware ===
 
-app.use(morgan("tiny"));
+app.use(morgan("combined"));
 
-const whitelist = [
-  "http:localhost:5173",
-  "https://wheres-waldo-api-0g9p.onrender.com",
-];
 app.use(express.json());
 
 app.use((req, res, next) => {
