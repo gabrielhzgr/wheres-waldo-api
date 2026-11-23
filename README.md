@@ -1,7 +1,7 @@
 # wheres-waldo-api
 
-Express app for playing where's waldo game. Used prisma ORM for the db,
-the images urls and coordinates of the characters are stored in postgresql.
+_ExpressJS_ app for playing where's waldo game. Used _prisma ORM_ for the db.
+The images urls and coordinates of the characters are stored in _postgresql_.
 When starting a new game the user is provided with a signed cookie
 with startTime in ms,when they place a character the game verifies if it
 was correct and if all were guessed sends another cookie with the endTime.
